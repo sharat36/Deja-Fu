@@ -3,6 +3,7 @@ extends Actor
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction: = get_direction()
+	set_animation()
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 
@@ -26,3 +27,18 @@ func calculate_move_velocity(
 	if is_jump_interrupted:
 		out.y = 0.0
 	return out
+func set_animation() -> void:
+	if(Input.is_action_pressed("move_right")):
+		$AnimatedSprite.flip_h = false
+		$AnimatedSprite.play("run")
+	elif(Input.is_action_pressed("move_left")):
+		$AnimatedSprite.flip_h = true
+		$AnimatedSprite.play("run")	
+	elif(Input.is_action_pressed("jump")):
+		$AnimatedSprite.play("jump")
+	elif(Input.is_action_pressed("roll")):
+		$AnimatedSprite.play("roll")
+	elif(Input.is_action_pressed("attack")):
+		$AnimatedSprite.play("attack")	
+	elif(is_on_floor()):
+		$AnimatedSprite.play("idle")
