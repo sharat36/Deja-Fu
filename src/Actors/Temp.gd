@@ -3,13 +3,41 @@ extends "res://src/Actors/Actor.gd"
 onready var Player = get_parent().get_node("player")
 
 var vel = Vector2.ZERO
-var react_time = 400
+var react_time = 300
 var dir = 0
 var next_dir = 0
 var next_dir_time = 0
 var next_jump_time = -1
 
-var target_player_dist = 100
+var target_player_dist = 50
+
+var eye_reach = 90
+var vision = 600
+
+func sees_player():
+	var eye_center = get_global_position()
+	var eye_top = eye_center + Vector2(0, -eye_reach)
+	var eye_left = eye_center +  Vector2(-eye_reach, 0)
+	var eye_right = eye_center + Vector2(eye_reach, 0)
+	
+	var player_pos = Player.get_global_position()
+	var player_extents = Player.get_node("CollisionShape2D").shape.extents - Vector2(1, 1)
+	
+	var top_left = player_pos + Vector2(-player_extents.x, -player_extents.y)
+	var top_right = player_pos + Vector2(player_extents.x, -player_extents.y)
+	var bottom_left = player_pos + Vector2(-player_extents.x, player_extents.y)
+	var bottom_right = player_pos + Vector2(player_extents.x, player_extents.y)
+	
+	var space_state = get_world_2d().direct_space_state
+	
+	for eye in [eye_center, eye_top, eye_left, eye_right]:
+		for corner in [top_left, top_right, bottom_left, bottom_right]:
+			if (corner - eye).length() > vision:
+				continue
+			var collision = space_state.intersect_ray(eye, corner, [], 1)
+			if collision and collision.collider.name == "player":
+				return true
+	return false
 
 func set_dir(target_dir):
 	if next_dir != target_dir:
@@ -17,9 +45,9 @@ func set_dir(target_dir):
 		next_dir_time = OS.get_ticks_msec() + react_time
 
 func _physics_process(delta: float) -> void:
-	if Player.position.x < position.x - target_player_dist:
+	if Player.position.x < position.x - target_player_dist and sees_player():
 		set_dir(-1)
-	elif Player.position.x > position.x + target_player_dist:
+	elif Player.position.x > position.x + target_player_dist and sees_player():
 		set_dir(1)
 	else:
 		set_dir(0)
@@ -28,17 +56,16 @@ func _physics_process(delta: float) -> void:
 		dir = next_dir
 	
 	if OS.get_ticks_msec() > next_jump_time and next_jump_time != -1 and is_on_floor():
-		if Player.position.y < position.y:
-			vel.y = -100
+		if Player.position.y < position.y - 60 and sees_player():
+			vel.y = -900
 		next_jump_time = -1
 	
-	vel.x = dir * 150;
+	vel.x = dir * 200;
 		
-	if Player.position.y < position.y and next_jump_time == -1:
+	if Player.position.y < position.y - 60 and next_jump_time == -1 and sees_player():
 		next_jump_time = OS.get_ticks_msec() + react_time
 	
-	vel.y += max(gravity * delta, speed.y)
-	
+	vel.y += gravity * delta
 	if is_on_floor() and vel.y > 0:
 		vel.y = 0
 	
