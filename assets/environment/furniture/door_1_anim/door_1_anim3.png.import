@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pipe_1.png-ff81dece83cf9ad6feba6e1363dec2b5.stex"
+path="res://.import/door_1_anim3.png-53fd8a6085e0a15049479acdd8d59eaa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/environment/furniture/pipe_1.png"
-dest_files=[ "res://.import/pipe_1.png-ff81dece83cf9ad6feba6e1363dec2b5.stex" ]
+source_file="res://assets/environment/furniture/door_1_anim/door_1_anim3.png"
+dest_files=[ "res://.import/door_1_anim3.png-53fd8a6085e0a15049479acdd8d59eaa.stex" ]
 
 [params]
 
