@@ -59,19 +59,19 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 9, 19.9859 )
+extents = Vector2( 6, 19.9859 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 12, 20 )
 
 [node name="player" type="KinematicBody2D"]
-position = Vector2( 27, 31 )
+position = Vector2( 50, 31 )
 collision_mask = 6
 script = ExtResource( 29 )
 gravity = 500.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 14.2499, -1.53846 )
+position = Vector2( 15.2499, -1.53846 )
 scale = Vector2( 1.51388, 1.58396 )
 frames = SubResource( 1 )
 animation = "idle"
@@ -79,7 +79,7 @@ frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 4, 0 )
+position = Vector2( 7, 0 )
 shape = SubResource( 2 )
 
 [node name="AttackArea" type="Area2D" parent="." groups=[
@@ -87,7 +87,7 @@ shape = SubResource( 2 )
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 33, 0 )
+position = Vector2( 39, 0 )
 shape = SubResource( 3 )
 disabled = true
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

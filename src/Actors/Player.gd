@@ -1,13 +1,22 @@
 extends Actor
 
 var is_attacking: bool = false
+onready var Player = get_parent().get_node("player")
+var cur = 0
+var i = 1
+var pos = {}
+
+func _process(delta: float) -> void:
+	store_pos()
 
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0 
 	var direction: = get_direction()
-	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
-	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
-	set_animation()
+	
+	if not check_teleport():
+		_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
+		_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
+		set_animation()
 
 func get_direction() -> Vector2:
 	var dir: = Vector2(0.0, 1.0)
@@ -69,3 +78,23 @@ func set_animation() -> void:
 	elif is_on_floor():
 		$AnimatedSprite.play("idle")
 
+func store_pos():
+	if i % 250 == 0 :
+		pos[cur] = Player.get_position()
+		cur += 1
+	i += 1
+
+func check_teleport():
+	if(Input.is_action_pressed("teleport")):
+		print(i)
+		var cur = i / 250
+		print(cur)
+		if(cur > 0):
+			teleport(pos[cur - 1])
+			return true
+		else: 
+			return false
+	return false
+
+func teleport(pos):
+	Player.position = pos

@@ -4,10 +4,10 @@
 [ext_resource path="res://src/Actors/Temp.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13, 20 )
+extents = Vector2( 10, 20 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 12.5, 20.5 )
+extents = Vector2( 10, 20.5 )
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 collision_layer = 2
