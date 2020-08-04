@@ -47,8 +47,10 @@ func set_dir(target_dir):
 func _physics_process(delta: float) -> void:
 	if Player.position.x < position.x - target_player_dist and sees_player():
 		set_dir(-1)
+		$AnimatedSprite.flip_h = true
 	elif Player.position.x > position.x + target_player_dist and sees_player():
 		set_dir(1)
+		$AnimatedSprite.flip_h = false
 	else:
 		set_dir(0)
 	
@@ -56,19 +58,24 @@ func _physics_process(delta: float) -> void:
 		dir = next_dir
 	
 	if OS.get_ticks_msec() > next_jump_time and next_jump_time != -1 and is_on_floor():
-		if Player.position.y < position.y - 60 and sees_player():
-			vel.y = -900
+		if Player.position.y < position.y - 80 and sees_player():
+			vel.y = -750
 		next_jump_time = -1
 	
-	vel.x = dir * 200;
+	vel.x = dir * 100;
 		
-	if Player.position.y < position.y - 60 and next_jump_time == -1 and sees_player():
+	if Player.position.y < position.y - 80 and next_jump_time == -1 and sees_player():
 		next_jump_time = OS.get_ticks_msec() + react_time
 	
 	vel.y += gravity * delta
 	if is_on_floor() and vel.y > 0:
 		vel.y = 0
-	
+		
+	if vel.x == 0 and vel.y == 0:
+		$AnimatedSprite.play("idle")
+	elif vel.x != 0 or vel.y != 0:
+		$AnimatedSprite.play("run")
+		
 	vel = move_and_slide(vel, FLOOR_NORMAL)
 
 func _on_Area2D_area_entered(area: Area2D) -> void:
