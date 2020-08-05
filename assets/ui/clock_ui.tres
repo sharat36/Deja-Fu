@@ -1,0 +1,19 @@
+[gd_resource type="AnimatedTexture" load_steps=5 format=2]
+
+[ext_resource path="res://assets/ui/clock_ui_anim/clock_button4.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/clock_ui_anim/clock_button1.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/clock_ui_anim/clock_button3.png" type="Texture" id=4]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/clock_button2.png-454e0036c256dbf03cfd71884f70798d.stex"
+
+[resource]
+frames = 4
+fps = 2.0
+frame_0/texture = ExtResource( 2 )
+frame_1/texture = SubResource( 1 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 4 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 1 )
+frame_3/delay_sec = 0.0

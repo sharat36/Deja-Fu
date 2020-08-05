@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/environment/furniture/door_1_base.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/player.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/ui/hints/walljump.tres" type="Texture" id=19]
 [ext_resource path="res://assets/environment/wall_decor/finish.png" type="Texture" id=20]
 [ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=21]
+[ext_resource path="res://assets/ui/controls_ui.tscn" type="PackedScene" id=22]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -387,3 +388,9 @@ tile_data = PoolIntArray( 851984, 4, 0, 851986, 1, 0, 983046, 0, 0, 983052, 3, 0
 
 [node name="Portal" parent="." instance=ExtResource( 21 )]
 position = Vector2( 926.941, 434.638 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource( 22 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
