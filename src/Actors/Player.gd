@@ -15,6 +15,8 @@ func _physics_process(delta: float) -> void:
 	
 	if not check_teleport():
 		_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
+		if not is_on_floor()  and ($LeftRayCast1.is_colliding() or $LeftRayCast2.is_colliding() or $RightRayCast1.is_colliding() or $RightRayCast2.is_colliding()):
+			_velocity.y = 100
 		_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 		set_animation()
 
@@ -41,15 +43,23 @@ func calculate_move_velocity(
 	out.y += gravity * get_physics_process_delta_time() 
 	if direction.y == -1.0:
 		out.y = speed.y * direction.y
-	if is_jump_interrupted:
+	if not is_on_floor() and ($LeftRayCast1.is_colliding() or $LeftRayCast2.is_colliding()):
+		out.x += 300
+		out.y = -1000
+	elif not is_on_floor() and ($RightRayCast1.is_colliding() or $RightRayCast2.is_colliding()):
+		out.x -= 300
+		out.y = -1000
+	elif is_jump_interrupted:
 		out.y = 0.0
-	if is_attacking:
+	elif is_attacking:
 		out.x = 0.0
+	
 	return out
 	
 func set_animation() -> void:
 	if Input.is_action_pressed("move_right") and not is_attacking:
 		$AnimatedSprite.flip_h = false
+		$AttackArea.scale = Vector2(1, 1)
 		if Input.is_action_pressed("roll"):
 			$AnimatedSprite.play("roll")
 		elif Input.is_action_pressed("jump"):
@@ -58,6 +68,7 @@ func set_animation() -> void:
 			$AnimatedSprite.play("run")
 	elif Input.is_action_pressed("move_left") and not is_attacking:
 		$AnimatedSprite.flip_h = true
+		$AttackArea.scale = Vector2(-1, 1)
 		if Input.is_action_pressed("roll"):
 			$AnimatedSprite.play("roll")
 		elif Input.is_action_pressed("jump"):

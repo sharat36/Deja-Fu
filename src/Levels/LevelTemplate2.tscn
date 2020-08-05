@@ -251,7 +251,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 6/shapes = [  ]
 6/z_index = 0
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="LevelTemplate2" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 127.752, 447.751 )
