@@ -13,6 +13,7 @@ var target_player_dist = 50
 
 var eye_reach = 90
 var vision = 600
+var dying = false
 
 func sees_player():
 	var eye_center = get_global_position()
@@ -45,12 +46,18 @@ func set_dir(target_dir):
 		next_dir_time = OS.get_ticks_msec() + react_time
 
 func _physics_process(delta: float) -> void:
+	if dying:
+		return
+	
 	if Player.position.x < position.x - target_player_dist and sees_player():
 		set_dir(-1)
 		$AnimatedSprite.flip_h = true
 	elif Player.position.x > position.x + target_player_dist and sees_player():
 		set_dir(1)
 		$AnimatedSprite.flip_h = false
+	elif sees_player():
+		#shoot()
+		pass
 	else:
 		set_dir(0)
 	
@@ -79,6 +86,8 @@ func _physics_process(delta: float) -> void:
 	vel = move_and_slide(vel, FLOOR_NORMAL)
 
 func _on_Area2D_area_entered(area: Area2D) -> void:
-	area.is_in_group("sword")
-	queue_free()
-
+	if area.is_in_group("sword"):
+		$AnimatedSprite.play("death")
+		dying = true
+		yield($AnimatedSprite, "animation_finished")
+		queue_free()
