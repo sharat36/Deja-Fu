@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/environment/furniture/door_1_base.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/player.tscn" type="PackedScene" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=21]
 [ext_resource path="res://assets/ui/controls_ui.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/Objects/Door.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/Objects/Bullet.tscn" type="PackedScene" id=24]
+[ext_resource path="res://assets/ui/hints/dooropen.tres" type="Texture" id=25]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -289,20 +291,6 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
-2/name = "dejafu.tres 2"
-2/texture = ExtResource( 16 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 0, 0, 64, 64 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
 3/name = "jump.tres 3"
 3/texture = ExtResource( 15 )
 3/tex_offset = Vector2( 0, 0 )
@@ -345,6 +333,34 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 5/shape_one_way_margin = 0.0
 5/shapes = [  ]
 5/z_index = 0
+6/name = "dejafu.tres 6"
+6/texture = ExtResource( 16 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 64, 64 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "dooropen.tres 7"
+7/texture = ExtResource( 25 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 64, 64 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
 
 [node name="LevelTemplate" type="Node2D"]
 
@@ -365,7 +381,7 @@ position = Vector2( 826.69, 529.11 )
 
 [node name="Background" type="TileMap" parent="."]
 rotation = -0.000847382
-z_index = -1
+z_index = -3
 tile_set = SubResource( 6 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 4
@@ -381,14 +397,14 @@ format = 1
 tile_data = PoolIntArray( 786438, 1, 0, 851996, 6, 0, 851997, 6, 0, 917525, 3, 0, 983061, 0, 0, 983063, 4, 0 )
 
 [node name="Hints" type="TileMap" parent="."]
-z_index = -1
+z_index = 21
 tile_set = SubResource( 8 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 851984, 4, 0, 851986, 1, 0, 983046, 0, 0, 983052, 3, 0, 983065, 2, 0, 983068, 5, 0 )
+tile_data = PoolIntArray( 851984, 4, 0, 851986, 1, 0, 983046, 0, 0, 983052, 3, 0, 983060, 6, 0, 983065, 7, 0, 983068, 5, 0 )
 
 [node name="Portal" parent="." instance=ExtResource( 21 )]
-position = Vector2( 927.956, 434.638 )
+position = Vector2( 928.309, 434.638 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -397,3 +413,5 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 
 [node name="Door" parent="." instance=ExtResource( 23 )]
+
+[node name="Bullet" parent="." instance=ExtResource( 24 )]

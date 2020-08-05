@@ -1,18 +1,19 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/enemies/enemy_1/death/death1.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Enemy1.gd" type="Script" id=2]
 [ext_resource path="res://assets/enemies/enemy_1/death/death2.png" type="Texture" id=3]
+[ext_resource path="res://src/Objects/Bullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/enemies/enemy_1/shoot/shoot1.png" type="Texture" id=13]
 [ext_resource path="res://assets/enemies/enemy_1/shoot/shoot2.png" type="Texture" id=14]
 
-[sub_resource type="StreamTexture" id=1]
+[sub_resource type="StreamTexture" id=16]
 load_path = "res://.import/idle1.png-d3214b887901826346b8f009c05ed2f1.stex"
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=17]
 load_path = "res://.import/idle2.png-8d04770e0af3f06e56d2224c956dec1b.stex"
 
-[sub_resource type="StreamTexture" id=3]
+[sub_resource type="StreamTexture" id=18]
 load_path = "res://.import/idle3.png-461d535c798d926eacf6d3682a172458.stex"
 
 [sub_resource type="StreamTexture" id=4]
@@ -41,7 +42,7 @@ load_path = "res://.import/run8.png-2cb79ed1e131189ef0af3a60ffb2f764.stex"
 
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
@@ -72,6 +73,7 @@ extents = Vector2( 15.9758, 18.0899 )
 collision_layer = 2
 collision_mask = 5
 script = ExtResource( 2 )
+Bullet = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.5, -9.5 )

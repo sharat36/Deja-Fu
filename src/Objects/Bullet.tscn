@@ -1,17 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[sub_resource type="StreamTexture" id=9]
-flags = 4
-load_path = "res://.import/bullet_1.png-ce0fba5a496c932e8cd5a93a7a4059a4.stex"
+[ext_resource path="res://src/Objects/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://assets/enemies/bullets/bullet_1.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 1.60361, 1.08279 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2.11585, 1.58716 )
 
-[node name="Bullet" type="Area2D"]
-position = Vector2( 476.22, 452.409 )
+[node name="Bullet" type="KinematicBody2D"]
+script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = SubResource( 9 )
+texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 10 )
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

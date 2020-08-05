@@ -1,2 +1,2 @@
-﻿44133
+﻿33553
 /home/krypt/ProgramFiles/godot/3.2.2/Godot_v3.2.2-stable_mono_x11.64

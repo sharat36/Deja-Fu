@@ -1,8 +1,8 @@
-extends Area2D
+extends KinematicBody2D
 
 
 # Declare member variables here. Examples:
-var speed = 20
+var speed = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,3 +12,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position += transform.x * speed * delta
+
+func _on_Area2D_body_entered(body):
+	if not body.get_name().begins_with("Enemy") and not body.get_name().begins_with("player"):
+		queue_free()

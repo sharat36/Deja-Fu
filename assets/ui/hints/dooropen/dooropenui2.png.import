@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bullet_1.png-ce0fba5a496c932e8cd5a93a7a4059a4.stex"
+path="res://.import/dooropenui2.png-f6e5eb52f19a4b7d1e9d02c3e1b5e9d8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/bullets/bullet_1.png"
-dest_files=[ "res://.import/bullet_1.png-ce0fba5a496c932e8cd5a93a7a4059a4.stex" ]
+source_file="res://assets/ui/hints/dooropen/dooropenui2.png"
+dest_files=[ "res://.import/dooropenui2.png-f6e5eb52f19a4b7d1e9d02c3e1b5e9d8.stex" ]
 
 [params]
 

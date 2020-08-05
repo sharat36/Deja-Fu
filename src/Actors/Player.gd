@@ -122,7 +122,7 @@ func check_teleport():
 func teleport(pos):
 	Player.position = pos
 
-
-func _on_Door_body_entered(body):
-	print(body.name)
-	pass # Replace with function body.
+func _on_PlayerArea_body_entered(body):
+	print(body.get_name())
+	if body.is_in_group("damage"):
+		print("dead")

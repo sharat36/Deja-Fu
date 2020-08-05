@@ -1,5 +1,7 @@
 extends "res://src/Actors/Actor.gd"
 
+export (PackedScene) var Bullet
+
 onready var Player = get_parent().get_node("player")
 
 var vel = Vector2.ZERO
@@ -9,10 +11,13 @@ var next_dir = 0
 var next_dir_time = 0
 var next_jump_time = -1
 
-var target_player_dist = 50
+var target_player_dist = 300
 
 var eye_reach = 90
 var vision = 600
+var reload_time = 3
+var last_shot = OS.get_unix_time() - reload_time
+var is_shooting = true
 var dying = false
 
 func sees_player():
@@ -49,15 +54,14 @@ func _physics_process(delta: float) -> void:
 	if dying:
 		return
 	
-	if Player.position.x < position.x - target_player_dist and sees_player():
+	if abs(Player.position.x - position.x) <= target_player_dist and sees_player():
+		shoot()
+	if Player.position.x < position.x and sees_player():
 		set_dir(-1)
 		$AnimatedSprite.flip_h = true
-	elif Player.position.x > position.x + target_player_dist and sees_player():
+	elif Player.position.x > position.x and sees_player():
 		set_dir(1)
 		$AnimatedSprite.flip_h = false
-	elif sees_player():
-		#shoot()
-		pass
 	else:
 		set_dir(0)
 	
@@ -85,6 +89,17 @@ func _physics_process(delta: float) -> void:
 		
 	vel = move_and_slide(vel, FLOOR_NORMAL)
 
+func shoot():
+	if OS.get_unix_time() - last_shot < reload_time:
+		return
+	last_shot = OS.get_unix_time()
+	var bullet = Bullet.instance()
+	var x = Player.transform.origin.x - transform.origin.x
+	var y = Player.transform.origin.y - transform.origin.y
+	bullet.transform.x = Vector2(x, y).normalized()
+	bullet.transform.origin = transform.origin
+	get_tree().get_root().add_child(bullet)
+	
 func _on_Area2D_area_entered(area: Area2D) -> void:
 	if area.is_in_group("sword"):
 		$AnimatedSprite.play("death")
