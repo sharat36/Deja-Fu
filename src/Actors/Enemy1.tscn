@@ -1,36 +1,69 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://assets/enemies/enemy_1/idle/idle/idle3.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Enemy1.gd" type="Script" id=2]
-[ext_resource path="res://assets/enemies/enemy_1/idle/idle/idle2.png" type="Texture" id=3]
-[ext_resource path="res://assets/enemies/enemy_1/idle/idle/idle1.png" type="Texture" id=4]
-[ext_resource path="res://assets/enemies/enemy_1/run/run/run3.png" type="Texture" id=5]
-[ext_resource path="res://assets/enemies/enemy_1/run/run/run1.png" type="Texture" id=6]
-[ext_resource path="res://assets/enemies/enemy_1/run/run/run8.png" type="Texture" id=7]
-[ext_resource path="res://assets/enemies/enemy_1/run/run/run6.png" type="Texture" id=8]
-[ext_resource path="res://assets/enemies/enemy_1/run/run/run5.png" type="Texture" id=9]
-[ext_resource path="res://assets/enemies/enemy_1/run/run/run7.png" type="Texture" id=10]
-[ext_resource path="res://assets/enemies/enemy_1/run/run/run4.png" type="Texture" id=11]
-[ext_resource path="res://assets/enemies/enemy_1/run/run/run2.png" type="Texture" id=12]
 [ext_resource path="res://assets/enemies/enemy_1/shoot/shoot1.png" type="Texture" id=13]
 [ext_resource path="res://assets/enemies/enemy_1/shoot/shoot2.png" type="Texture" id=14]
 
+[sub_resource type="StreamTexture" id=4]
+flags = 4
+load_path = "res://.import/idle1.png-d3214b887901826346b8f009c05ed2f1.stex"
+
+[sub_resource type="StreamTexture" id=5]
+flags = 4
+load_path = "res://.import/idle2.png-8d04770e0af3f06e56d2224c956dec1b.stex"
+
+[sub_resource type="StreamTexture" id=6]
+flags = 4
+load_path = "res://.import/idle3.png-461d535c798d926eacf6d3682a172458.stex"
+
+[sub_resource type="StreamTexture" id=7]
+flags = 4
+load_path = "res://.import/run1.png-30ff04e6ebd72c38a015e9267986d792.stex"
+
+[sub_resource type="StreamTexture" id=8]
+flags = 4
+load_path = "res://.import/run2.png-1f94f09946a0c1ed62fc19e0ad1f3c4a.stex"
+
+[sub_resource type="StreamTexture" id=9]
+flags = 4
+load_path = "res://.import/run3.png-0590a775ed2ca6f1fea74fcc013d614a.stex"
+
+[sub_resource type="StreamTexture" id=10]
+flags = 4
+load_path = "res://.import/run4.png-34f55c3a2d64e5161f97847309786fd2.stex"
+
+[sub_resource type="StreamTexture" id=11]
+flags = 4
+load_path = "res://.import/run5.png-cc5fa76ce77009ba214ede0f924cbacc.stex"
+
+[sub_resource type="StreamTexture" id=12]
+flags = 4
+load_path = "res://.import/run7.png-512be1151ba3fc41c8dfdcedc1c21cdb.stex"
+
+[sub_resource type="StreamTexture" id=13]
+flags = 4
+load_path = "res://.import/run6.png-15e7f19dc44c7553dd7c623d5ac4be55.stex"
+
+[sub_resource type="StreamTexture" id=14]
+flags = 4
+load_path = "res://.import/run8.png-2cb79ed1e131189ef0af3a60ffb2f764.stex"
+
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "shoot",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -49,7 +82,7 @@ position = Vector2( -1.5, -9.5 )
 scale = Vector2( 1.22222, 1.52778 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 flip_h = true
 

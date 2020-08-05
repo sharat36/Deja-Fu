@@ -386,4 +386,4 @@ format = 1
 tile_data = PoolIntArray( 851984, 4, 0, 851986, 1, 0, 983046, 0, 0, 983052, 3, 0, 983065, 2, 0, 983068, 5, 0 )
 
 [node name="Portal" parent="." instance=ExtResource( 21 )]
-position = Vector2( 913.433, 436.227 )
+position = Vector2( 926.941, 434.638 )

@@ -68,6 +68,7 @@ func set_animation() -> void:
 			$AnimatedSprite.play("run")
 	elif Input.is_action_pressed("move_left") and not is_attacking:
 		$AnimatedSprite.flip_h = true
+		#AttackArea.transform.x = $AnimatedSprite.transform.x - 1
 		$AttackArea.scale = Vector2(-1, 1)
 		if Input.is_action_pressed("roll"):
 			$AnimatedSprite.play("roll")
