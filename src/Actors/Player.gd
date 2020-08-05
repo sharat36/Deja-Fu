@@ -1,6 +1,7 @@
 extends Actor
 
 var is_attacking: bool = false
+var is_gripping: bool = false
 onready var Player = get_parent().get_node("player")
 var cur = 0
 var i = 1
@@ -17,6 +18,10 @@ func _physics_process(delta: float) -> void:
 		_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 		if not is_on_floor()  and ($LeftRayCast1.is_colliding() or $LeftRayCast2.is_colliding() or $RightRayCast1.is_colliding() or $RightRayCast2.is_colliding()):
 			_velocity.y = 100
+			is_gripping = true
+			$AnimatedSprite.play("wallgrip")
+		else:
+			is_gripping = false
 		_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 		set_animation()
 
@@ -27,7 +32,12 @@ func get_direction() -> Vector2:
 		dir.x = 1.0
 	if Input.is_action_pressed("move_left"):
 		dir.x = -1.0
-	if Input.is_action_pressed("jump") and is_on_floor():
+	if Input.is_action_pressed("jump") and (is_on_floor() or is_gripping):
+		if is_gripping:
+			if Input.is_action_pressed("move_right"):
+				dir.x = -2.0
+			elif Input.is_action_pressed("move_left"):
+				dir.x = 2.0
 		dir.y = -1.0
 		
 	return dir
@@ -57,6 +67,8 @@ func calculate_move_velocity(
 	return out
 	
 func set_animation() -> void:
+	if is_gripping:
+		return
 	if Input.is_action_pressed("move_right") and not is_attacking:
 		$AnimatedSprite.flip_h = false
 		$AttackArea.scale = Vector2(1, 1)
@@ -81,12 +93,12 @@ func set_animation() -> void:
 		$AnimatedSprite.play("roll")
 	elif Input.is_action_pressed("attack"):
 		$AttackArea/CollisionShape2D.disabled = false;
-		$AnimatedSprite.play("attack")	
+		$AnimatedSprite.play("attack")
 		is_attacking = true
-	elif Input.is_action_just_released("attack"):
+		yield($AnimatedSprite, "animation_finished")
+		is_attacking = false
 		$AttackArea/CollisionShape2D.disabled = true;
-		is_attacking = false;
-	elif is_on_floor():
+	elif is_on_floor() and not is_attacking:
 		$AnimatedSprite.play("idle")
 
 func store_pos():
@@ -109,3 +121,8 @@ func check_teleport():
 
 func teleport(pos):
 	Player.position = pos
+
+
+func _on_Door_body_entered(body):
+	print(body.name)
+	pass # Replace with function body.

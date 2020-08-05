@@ -68,7 +68,7 @@ script = ExtResource( 2 )
 next_scene = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 15, -3 )
+position = Vector2( 1.49185, -2.20541 )
 shape = SubResource( 1 )
 
 [node name="TrasitionLayer" type="CanvasLayer" parent="."]
