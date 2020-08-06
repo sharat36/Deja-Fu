@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export(float) var speed = 0.02
+export(float) var speed = 20
 export(float) var left = 5 
 export(float) var right = 10
 
@@ -27,6 +27,6 @@ func _process(delta):
 		is_right = true
 
 	if is_right:
-		position += speed*transform.x
+		position += speed*transform.x*delta
 	else:
-		position -= speed*transform.x
+		position -= speed*transform.x*delta

@@ -419,6 +419,6 @@ anchor_bottom = 0.0
 
 [node name="Buzzsaw" parent="." instance=ExtResource( 26 )]
 position = Vector2( 566.764, 448.198 )
-speed = 0.03
+speed = 40.0
 left = 40.0
 right = 40.0
