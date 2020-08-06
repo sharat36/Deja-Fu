@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/ui/hints/dooropen.tres" type="Texture" id=25]
 [ext_resource path="res://src/Objects/Door.tscn" type="PackedScene" id=28]
 
-[sub_resource type="TileSet" id=8]
+[sub_resource type="TileSet" id=1]
 0/name = "move.tres 0"
 0/texture = ExtResource( 14 )
 0/tex_offset = Vector2( 0, 0 )
@@ -138,7 +138,7 @@ tile_data = PoolIntArray( -131031, 1610612742, 0, -131030, 1610612742, 0, -65495
 
 [node name="Hints" type="TileMap" parent="."]
 z_index = -1
-tile_set = SubResource( 8 )
+tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 983047, 1, 0, 983056, 7, 0 )
