@@ -4,6 +4,7 @@ var is_attacking: bool = false
 var is_gripping: bool = false
 var dying: bool = false
 onready var Player = get_parent().get_node("player")
+onready var dejaFu_bar = $Node2D/DejaFuBar
 var pos = []
 var rewind_max_time = 6000
 var rewind_gap = 100
@@ -14,6 +15,7 @@ var teleport_time
 
 func _process(delta: float) -> void:
 	store_pos()
+	dejaFu_bar.value = pos.size()
 
 func _physics_process(delta: float) -> void:
 	if dying:
@@ -116,10 +118,9 @@ func store_pos():
 			if pos.size() > rewind_max_elems :
 				pos.remove(0)
 			pos.append([cur, Player.position, _velocity])
-
+		
 func check_teleport():
 	if Input.is_action_pressed("teleport") and pos.size() > 0:
-		print("hi")
 		if not is_teleporting :
 			teleport_time = OS.get_ticks_msec()
 			
