@@ -119,6 +119,7 @@ func store_pos():
 
 func check_teleport():
 	if Input.is_action_pressed("teleport") and pos.size() > 0:
+		print("hi")
 		if not is_teleporting :
 			teleport_time = OS.get_ticks_msec()
 			
