@@ -258,6 +258,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 position = Vector2( 127.752, 447.751 )
 collision_mask = 4
 speed = Vector2( 300, 300 )
+current_scene = null
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 current = true

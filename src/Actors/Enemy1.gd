@@ -15,7 +15,7 @@ var target_player_dist = 300
 
 var eye_reach = 90
 var vision = 600
-var reload_time = 3
+var reload_time = 2
 var last_shot = OS.get_unix_time() - reload_time
 var is_shooting = true
 var dying = false

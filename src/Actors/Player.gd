@@ -1,7 +1,10 @@
 extends Actor
 
+export var current_scene: PackedScene
+
 var is_attacking: bool = false
 var is_gripping: bool = false
+var dying: bool = false
 onready var Player = get_parent().get_node("player")
 var cur = 0
 var i = 1
@@ -11,6 +14,8 @@ func _process(delta: float) -> void:
 	store_pos()
 
 func _physics_process(delta: float) -> void:
+	if dying:
+		return
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0 
 	var direction: = get_direction()
 	
@@ -26,6 +31,8 @@ func _physics_process(delta: float) -> void:
 		set_animation()
 
 func get_direction() -> Vector2:
+	if dying:
+		return Vector2(0.0, 0.0)
 	var dir: = Vector2(0.0, 1.0)
 	
 	if Input.is_action_pressed("move_right"):
@@ -67,6 +74,8 @@ func calculate_move_velocity(
 	return out
 	
 func set_animation() -> void:
+	if dying:
+		return
 	if is_gripping:
 		return
 	if Input.is_action_pressed("move_right") and not is_attacking:
@@ -108,6 +117,8 @@ func store_pos():
 	i += 1
 
 func check_teleport():
+	if dying:
+		return
 	if(Input.is_action_pressed("teleport")):
 		print(i)
 		var cur = i / 250
@@ -123,6 +134,8 @@ func teleport(pos):
 	Player.position = pos
 
 func _on_PlayerArea_body_entered(body):
-	print(body.get_name())
 	if body.is_in_group("damage"):
-		print("dead")
+		dying = true
+		$AnimatedSprite.play("death")
+		#get_tree().change_scene_to(current_scene)
+	
