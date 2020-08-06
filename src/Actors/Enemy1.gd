@@ -1,6 +1,10 @@
 extends "res://src/Actors/Actor.gd"
 
 export (PackedScene) var Bullet
+export (float) var bullet_speed = 200
+export (bool) var stationary = false
+export (bool) var shoot_straight = true
+export (float) var target_player_dist = 300
 
 onready var Player = get_parent().get_node("player")
 
@@ -10,8 +14,6 @@ var dir = 0
 var next_dir = 0
 var next_dir_time = 0
 var next_jump_time = -1
-
-var target_player_dist = 300
 
 var eye_reach = 90
 var vision = 600
@@ -56,20 +58,24 @@ func _physics_process(delta: float) -> void:
 	
 	if abs(Player.position.x - position.x) <= target_player_dist and sees_player():
 		shoot()
-	if Player.position.x < position.x and sees_player():
-		set_dir(-1)
-		$AnimatedSprite.flip_h = true
-	elif Player.position.x > position.x and sees_player():
-		set_dir(1)
-		$AnimatedSprite.flip_h = false
-	else:
+		
+	if stationary:
 		set_dir(0)
+	else:
+		if Player.position.x < position.x and sees_player():
+			set_dir(-1)
+			$AnimatedSprite.flip_h = true
+		elif Player.position.x > position.x and sees_player():
+			set_dir(1)
+			$AnimatedSprite.flip_h = false
+		else:
+			set_dir(0)
 	
 	if OS.get_ticks_msec() > next_dir_time:
 		dir = next_dir
 	
 	if OS.get_ticks_msec() > next_jump_time and next_jump_time != -1 and is_on_floor():
-		if Player.position.y < position.y - 80 and sees_player():
+		if Player.position.y < position.y - 80 and sees_player() and not stationary:
 			vel.y = -750
 		next_jump_time = -1
 	
@@ -95,10 +101,14 @@ func shoot():
 	$ShootAudio.play()
 	last_shot = OS.get_unix_time()
 	var bullet = Bullet.instance()
-	var x = Player.transform.origin.x + Player.get_node("PlayerArea").transform.origin.x - transform.origin.x
-	var y = Player.transform.origin.y + Player.get_node("PlayerArea").transform.origin.y - transform.origin.y
-	bullet.transform.x = Vector2(x, y).normalized()
-	bullet.transform.origin = transform.origin
+	if shoot_straight:
+		bullet.transform.x = -transform.x
+	else:
+		var x = Player.transform.origin.x + Player.get_node("PlayerArea").transform.origin.x - transform.origin.x
+		var y = Player.transform.origin.y + Player.get_node("PlayerArea").transform.origin.y - transform.origin.y
+		bullet.transform.x = Vector2(x, y).normalized()
+	bullet.transform.origin = transform.origin + $Muzzle.transform.origin
+	bullet.speed = bullet_speed
 	get_tree().get_root().add_child(bullet)
 	
 func _on_Area2D_area_entered(area: Area2D) -> void:

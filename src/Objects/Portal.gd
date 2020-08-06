@@ -16,8 +16,10 @@ func teleport() -> void:
 
 
 func _on_Portal_area_entered(area: Area2D) -> void:
-	teleport()
+	if area.get_name() == "player":
+		teleport()
 
 
 func _on_Portal_body_entered(body: Node) -> void:
-	teleport()
+	if body.get_name() == "player":
+		teleport()
