@@ -1,7 +1,5 @@
 extends Actor
 
-export var current_scene: PackedScene
-
 var is_attacking: bool = false
 var is_gripping: bool = false
 var dying: bool = false
@@ -137,5 +135,4 @@ func _on_PlayerArea_body_entered(body):
 	if body.is_in_group("damage"):
 		dying = true
 		$AnimatedSprite.play("death")
-		#get_tree().change_scene_to(current_scene)
-	
+		get_tree().reload_current_scene()
