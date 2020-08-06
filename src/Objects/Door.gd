@@ -21,4 +21,5 @@ func _on_Door_area_entered(area):
 	if area.is_in_group("sword"):
 		if $KinematicBody2D != null:
 			$KinematicBody2D.queue_free()
+			get_node("DoorOpenAudio").play()
 		$AnimatedSprite.play("open")

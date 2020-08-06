@@ -132,7 +132,11 @@ func teleport(pos):
 	Player.position = pos
 
 func _on_PlayerArea_body_entered(body):
+	if dying:
+		return
 	if body.is_in_group("damage"):
 		dying = true
 		$AnimatedSprite.play("death")
+		$DeathAudio.play()
+		yield($AnimatedSprite, "animation_finished")
 		get_tree().reload_current_scene()

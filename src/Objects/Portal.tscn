@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://assets/sounds/level_up.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/Objects/Portal.gd" type="Script" id=2]
 [ext_resource path="res://src/Levels/LevelTemplate2.tscn" type="PackedScene" id=3]
 
@@ -84,4 +85,7 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 "anims/fade in" = SubResource( 2 )
 anims/start = SubResource( 3 )
+
+[node name="LevelUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
 [connection signal="body_entered" from="." to="." method="_on_Portal_body_entered"]

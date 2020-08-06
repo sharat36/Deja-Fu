@@ -92,6 +92,7 @@ func _physics_process(delta: float) -> void:
 func shoot():
 	if OS.get_unix_time() - last_shot < reload_time:
 		return
+	$ShootAudio.play()
 	last_shot = OS.get_unix_time()
 	var bullet = Bullet.instance()
 	var x = Player.transform.origin.x + Player.get_node("PlayerArea").transform.origin.x - transform.origin.x
@@ -101,8 +102,11 @@ func shoot():
 	get_tree().get_root().add_child(bullet)
 	
 func _on_Area2D_area_entered(area: Area2D) -> void:
+	if dying:
+		return
 	if area.is_in_group("sword"):
 		$AnimatedSprite.play("death")
+		$DeathAudio.play()
 		dying = true
 		yield($AnimatedSprite, "animation_finished")
 		queue_free()
