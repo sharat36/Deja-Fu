@@ -16,8 +16,6 @@ var is_right = true
 func _ready():
 	left_pos = transform.origin - transform.x*left
 	right_pos = transform.origin + transform.x*right
-	print(left_pos)
-	print(right_pos)
 
 func _process(delta):
 	

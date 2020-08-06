@@ -1,0 +1,38 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big1.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big2.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big3.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big6.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big11.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big8.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big7.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big4.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big5.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big9.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big10.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/clock_big_anim/clock_big12.png" type="Texture" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 5 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "tick",
+"speed": 12.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 22.383
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.177986, 0.182406 )
+frames = SubResource( 1 )
+animation = "tick"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
