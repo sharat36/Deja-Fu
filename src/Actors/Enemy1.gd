@@ -94,8 +94,8 @@ func shoot():
 		return
 	last_shot = OS.get_unix_time()
 	var bullet = Bullet.instance()
-	var x = Player.transform.origin.x - transform.origin.x
-	var y = Player.transform.origin.y - transform.origin.y
+	var x = Player.transform.origin.x + Player.get_node("PlayerArea").transform.origin.x - transform.origin.x
+	var y = Player.transform.origin.y + Player.get_node("PlayerArea").transform.origin.y - transform.origin.y
 	bullet.transform.x = Vector2(x, y).normalized()
 	bullet.transform.origin = transform.origin
 	get_tree().get_root().add_child(bullet)

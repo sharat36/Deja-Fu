@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 # Declare member variables here. Examples:
-var speed = 300
+var speed = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
