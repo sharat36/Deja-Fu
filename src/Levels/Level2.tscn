@@ -163,3 +163,4 @@ position = Vector2( 945, 512 )
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 846.641, 528.003 )
 shoot_straight = false
+reload_time = 1.8

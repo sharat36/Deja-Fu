@@ -23,7 +23,6 @@ script = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -31,3 +30,4 @@ polygon = PoolVector2Array( -10.3017, 10.0627, -47.0102, 32.9119, -38.7696, 4.06
 
 [node name="BuzzSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
+max_distance = 300.0

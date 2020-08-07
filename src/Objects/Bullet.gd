@@ -16,5 +16,7 @@ func _process(delta):
 func _on_Area2D_body_entered(body):
 	if not body.get_name().begins_with("Enemy") \
 	and not body.get_name().begins_with("player") \
-	and not body.get_name().begins_with("Bullet"):
+	and not body.get_name().begins_with("Bullet") \
+	and not body.get_name().begins_with("@Bullet"):
+		print(body.get_name())
 		queue_free()

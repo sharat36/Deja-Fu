@@ -7,9 +7,9 @@ onready var Player = get_parent().get_node("player")
 onready var dejaFu_bar = $Node2D/DejaFuBar
 var pos = []
 var rewind_max_time = 6000
-var rewind_gap = 30
+var rewind_gap = 15
 var rewind_max_elems = rewind_max_time / rewind_gap
-var rewind_rate = 1.5
+var rewind_rate = 1.3
 var is_teleporting = false
 var teleport_time
 

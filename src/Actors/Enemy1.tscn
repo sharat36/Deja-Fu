@@ -104,6 +104,7 @@ stream = ExtResource( 5 )
 
 [node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
+max_distance = 300.0
 
 [node name="Muzzle" type="Area2D" parent="."]
 position = Vector2( -10.8668, -9.29193 )

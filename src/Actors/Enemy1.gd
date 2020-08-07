@@ -100,7 +100,6 @@ func _physics_process(delta: float) -> void:
 	vel = move_and_slide(vel, FLOOR_NORMAL)
 
 func shoot():
-	print($Muzzle.position)
 	if OS.get_unix_time() - last_shot < reload_time:
 		return
 	$ShootAudio.play()
