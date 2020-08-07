@@ -5,4 +5,5 @@
 [node name="LevelButton" instance=ExtResource( 1 )]
 
 [node name="Label" parent="." index="0"]
+custom_colors/font_color_shadow = Color( 1, 0.592157, 0, 1 )
 text = "LEVELS"

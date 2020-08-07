@@ -11,11 +11,10 @@
 [ext_resource path="res://src/Levels/Level6.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 10 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "fade_in"
+[sub_resource type="Animation" id=2]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
@@ -45,7 +44,6 @@ level5 = ExtResource( 8 )
 level6 = ExtResource( 9 )
 level7 = ExtResource( 6 )
 level8 = ExtResource( 7 )
-TitleScreen = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 354.0
@@ -53,7 +51,7 @@ margin_top = 31.0
 margin_right = 432.0
 margin_bottom = 76.0
 rect_scale = Vector2( 3.23419, 3 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 1, 0.592157, 0, 1 )
 custom_constants/shadow_offset_y = 1
 text = "LEVELS
@@ -157,7 +155,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Fade In"]
-anims/fade_in = SubResource( 1 )
+anims/fade_in = SubResource( 2 )
 [connection signal="pressed" from="Level 1" to="." method="_on_Level_1_pressed"]
 [connection signal="pressed" from="Level 2" to="." method="_on_Level_2_pressed"]
 [connection signal="pressed" from="Level 3" to="." method="_on_Level_3_pressed"]
