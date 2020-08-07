@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/environment/Furniture.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/environment/background.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Actors/Enemy1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/Level5.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/ui/hints/move.tres" type="Texture" id=14]
 [ext_resource path="res://assets/ui/hints/jump.tres" type="Texture" id=15]
 [ext_resource path="res://assets/ui/hints/dejafu.tres" type="Texture" id=16]
@@ -143,6 +144,7 @@ format = 1
 [node name="Portal" parent="." instance=ExtResource( 21 )]
 position = Vector2( 992.24, 853.448 )
 scale = Vector2( 1.25, 4 )
+next_scene = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -153,4 +155,5 @@ anchor_bottom = 0.0
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 145.062, 942.342 )
 stationary = true
+target_player_dist = 10000.0
 reload_time = 1.8
