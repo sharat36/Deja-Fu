@@ -378,8 +378,7 @@ drag_margin_left = 0.05
 drag_margin_right = 0.05
 
 [node name="Enemy1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 826.69, 529.11 )
-stationary = true
+position = Vector2( 300, 529.11 )
 
 [node name="Background" type="TileMap" parent="."]
 rotation = -0.000847382

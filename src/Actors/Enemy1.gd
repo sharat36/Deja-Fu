@@ -5,6 +5,7 @@ export (float) var bullet_speed = 200
 export (bool) var stationary = false
 export (bool) var shoot_straight = true
 export (float) var target_player_dist = 300
+export (float) var reload_time = 1.6
 
 onready var Player = get_parent().get_node("player")
 
@@ -17,7 +18,6 @@ var next_jump_time = -1
 
 var eye_reach = 90
 var vision = 600
-var reload_time = 2
 var last_shot = OS.get_unix_time() - reload_time
 var is_shooting = true
 var dying = false
@@ -61,6 +61,10 @@ func _physics_process(delta: float) -> void:
 		
 	if stationary:
 		set_dir(0)
+		if Player.position.x < position.x and sees_player():
+			$AnimatedSprite.flip_h = true
+		elif Player.position.x > position.x and sees_player():
+			$AnimatedSprite.flip_h = false
 	else:
 		if Player.position.x < position.x and sees_player():
 			set_dir(-1)
@@ -96,18 +100,22 @@ func _physics_process(delta: float) -> void:
 	vel = move_and_slide(vel, FLOOR_NORMAL)
 
 func shoot():
+	print($Muzzle.position)
 	if OS.get_unix_time() - last_shot < reload_time:
 		return
 	$ShootAudio.play()
 	last_shot = OS.get_unix_time()
 	var bullet = Bullet.instance()
 	if shoot_straight:
-		bullet.transform.x = -transform.x
+		if Player.position.x > position.x:
+			bullet.transform.x = Vector2(1, 0)
+		else:
+			bullet.transform.x = Vector2(-1, 0)
 	else:
 		var x = Player.transform.origin.x + Player.get_node("PlayerArea").transform.origin.x - transform.origin.x
 		var y = Player.transform.origin.y + Player.get_node("PlayerArea").transform.origin.y - transform.origin.y
 		bullet.transform.x = Vector2(x, y).normalized()
-	bullet.transform.origin = transform.origin + $Muzzle.transform.origin
+	bullet.transform.origin = transform.origin + Vector2(0, -10)
 	bullet.speed = bullet_speed
 	get_tree().get_root().add_child(bullet)
 	

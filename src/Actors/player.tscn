@@ -86,7 +86,7 @@ extents = Vector2( 8.72033, 24.1779 )
 
 [node name="player" type="KinematicBody2D"]
 position = Vector2( 50, 31 )
-collision_mask = 6
+collision_mask = 14
 script = ExtResource( 29 )
 gravity = 500.0
 
@@ -172,7 +172,6 @@ margin_right = 248.0
 margin_bottom = 1.0
 rect_scale = Vector2( 0.11734, 0.21875 )
 max_value = 60.0
-step = 1.0
 value = 30.0
 texture_under = ExtResource( 36 )
 texture_progress = ExtResource( 35 )
