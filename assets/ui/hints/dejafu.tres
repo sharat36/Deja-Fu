@@ -1,0 +1,14 @@
+[gd_resource type="AnimatedTexture" load_steps=3 format=2]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/dejafu1.png-b59ec662cd6934b9a691759e42be3b82.stex"
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/dejafu2.png-8ca49f1135162bab51bab624f1a0166b.stex"
+
+[resource]
+frames = 2
+fps = 2.0
+frame_0/texture = SubResource( 1 )
+frame_1/texture = SubResource( 2 )
+frame_1/delay_sec = 0.0

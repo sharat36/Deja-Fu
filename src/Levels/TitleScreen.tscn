@@ -1,0 +1,137 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/level/NewLevelButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/player/idle/idle1.png" type="Texture" id=3]
+[ext_resource path="res://assets/level/NewGameButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/TitleScreen.gd" type="Script" id=5]
+[ext_resource path="res://src/Levels/Level1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/LevelScreen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/ui/titletext/titletext1.png" type="Texture" id=8]
+[ext_resource path="res://assets/player/idle/idle2.png" type="Texture" id=9]
+[ext_resource path="res://assets/player/idle/idle4.png" type="Texture" id=10]
+[ext_resource path="res://assets/player/idle/idle3.png" type="Texture" id=11]
+
+[sub_resource type="Animation" id=3]
+resource_name = "title"
+length = 6.0
+loop = true
+step = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/titletext1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 521.456, 50 ), Vector2( 521.456, 70 ), Vector2( 521.456, 50 ) ]
+}
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+start_scene = ExtResource( 6 )
+levels_scene = ExtResource( 7 )
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Menu"]
+autoplay = "title"
+playback_speed = 3.0
+anims/title = SubResource( 3 )
+
+[node name="titletext1" type="Sprite" parent="Menu/AnimationPlayer"]
+position = Vector2( 521.456, 56.6667 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+centered = false
+offset = Vector2( 50, 0 )
+
+[node name="NewGameButton" parent="." instance=ExtResource( 4 )]
+margin_left = 145.498
+margin_top = 225.588
+margin_right = 1185.5
+margin_bottom = 285.588
+
+[node name="LevelButton" parent="." instance=ExtResource( 2 )]
+margin_left = 146.832
+margin_top = 315.022
+margin_right = 1170.83
+margin_bottom = 375.022
+
+[node name="VersionLabel" type="Label" parent="."]
+margin_left = 153.507
+margin_top = 441.832
+margin_right = 314.507
+margin_bottom = 472.832
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Version 1.0.0"
+
+[node name="Fade In" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fade In"]
+anims/fade_in = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 830.588, 397.76 )
+scale = Vector2( 7.95218, 7.90966 )
+frames = SubResource( 4 )
+animation = "idle"
+playing = true
+[connection signal="pressed" from="NewGameButton" to="." method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="LevelButton" to="." method="_on_LevelButton_pressed"]

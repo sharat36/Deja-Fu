@@ -1,0 +1,115 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/enemies/enemy_1/death/death1.png" type="Texture" id=1]
+[ext_resource path="res://src/Actors/Enemy1.gd" type="Script" id=2]
+[ext_resource path="res://assets/enemies/enemy_1/death/death2.png" type="Texture" id=3]
+[ext_resource path="res://src/Objects/Bullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sounds/death.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/shoot.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/enemies/enemy_1/shoot/shoot1.png" type="Texture" id=13]
+[ext_resource path="res://assets/enemies/enemy_1/shoot/shoot2.png" type="Texture" id=14]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/idle1.png-d3214b887901826346b8f009c05ed2f1.stex"
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/idle2.png-8d04770e0af3f06e56d2224c956dec1b.stex"
+
+[sub_resource type="StreamTexture" id=3]
+load_path = "res://.import/idle3.png-461d535c798d926eacf6d3682a172458.stex"
+
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/run1.png-30ff04e6ebd72c38a015e9267986d792.stex"
+
+[sub_resource type="StreamTexture" id=5]
+load_path = "res://.import/run2.png-1f94f09946a0c1ed62fc19e0ad1f3c4a.stex"
+
+[sub_resource type="StreamTexture" id=6]
+load_path = "res://.import/run3.png-0590a775ed2ca6f1fea74fcc013d614a.stex"
+
+[sub_resource type="StreamTexture" id=7]
+load_path = "res://.import/run4.png-34f55c3a2d64e5161f97847309786fd2.stex"
+
+[sub_resource type="StreamTexture" id=8]
+load_path = "res://.import/run5.png-cc5fa76ce77009ba214ede0f924cbacc.stex"
+
+[sub_resource type="StreamTexture" id=9]
+load_path = "res://.import/run7.png-512be1151ba3fc41c8dfdcedc1c21cdb.stex"
+
+[sub_resource type="StreamTexture" id=10]
+load_path = "res://.import/run6.png-15e7f19dc44c7553dd7c623d5ac4be55.stex"
+
+[sub_resource type="StreamTexture" id=11]
+load_path = "res://.import/run8.png-2cb79ed1e131189ef0af3a60ffb2f764.stex"
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": false,
+"name": "death",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 5.97583, 18.0899 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 15.9758, 18.0899 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 2.08951, 1.73999 )
+
+[node name="Enemy1" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 2 )
+Bullet = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.5, -9.5 )
+scale = Vector2( 1.22222, 1.52778 )
+frames = SubResource( 12 )
+animation = "death"
+frame = 1
+playing = true
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, -7 )
+shape = SubResource( 13 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1, -7.15749 )
+shape = SubResource( 14 )
+
+[node name="DeathAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+max_distance = 300.0
+
+[node name="Muzzle" type="Area2D" parent="."]
+position = Vector2( -10.8668, -9.29193 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Muzzle"]
+position = Vector2( -2.36236, 3.1498 )
+shape = SubResource( 15 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
