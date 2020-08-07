@@ -134,7 +134,7 @@ position = Vector2( 830.588, 397.76 )
 scale = Vector2( 7.95218, 7.90966 )
 frames = SubResource( 4 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 [connection signal="pressed" from="NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="LevelButton" to="." method="_on_LevelButton_pressed"]

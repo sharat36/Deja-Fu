@@ -5,7 +5,7 @@
 
 [sub_resource type="Animation" id=4]
 resource_name = "fade_in"
-length = 0.5
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
@@ -13,7 +13,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
@@ -48,14 +48,16 @@ font_data = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="FadeIn" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 39.96, 17.8 )
 color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FadeIn"]
+playback_speed = 2.0
 anims/fade_in = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

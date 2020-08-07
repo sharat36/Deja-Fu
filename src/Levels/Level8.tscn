@@ -121,7 +121,7 @@
 
 [node name="Buzzsaw" parent="." instance=ExtResource( 5 )]
 position = Vector2( 594.456, 1597.64 )
-speed = 100.0
+speed = 75.0
 right = 60.0
 
 [node name="Door" parent="." instance=ExtResource( 11 )]
