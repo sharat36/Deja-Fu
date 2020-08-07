@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/environment/furniture/pipe_2.png" type="Texture" id=1]
 [ext_resource path="res://assets/environment/furniture/chair_2.png" type="Texture" id=2]
@@ -12,11 +12,16 @@
 [ext_resource path="res://assets/environment/furniture/chair_1.png" type="Texture" id=10]
 [ext_resource path="res://assets/environment/furniture/danger_3.png" type="Texture" id=11]
 [ext_resource path="res://assets/environment/furniture/danger_2.png" type="Texture" id=12]
+[ext_resource path="res://assets/environment/furniture/portrait2.png" type="Texture" id=13]
+[ext_resource path="res://assets/environment/furniture/portrait.png" type="Texture" id=14]
+[ext_resource path="res://assets/environment/furniture/portrait3.png" type="Texture" id=15]
 
 [sub_resource type="StreamTexture" id=1]
+flags = 4
 load_path = "res://.import/chair_1.png-af29da155537fc1851ba4c84524ead76.stex"
 
 [sub_resource type="StreamTexture" id=2]
+flags = 4
 load_path = "res://.import/chair_2.png-cec66c1033464a197c13738511453ace.stex"
 
 [sub_resource type="TileSet" id=3]
@@ -230,6 +235,48 @@ load_path = "res://.import/chair_2.png-cec66c1033464a197c13738511453ace.stex"
 14/shape_one_way_margin = 0.0
 14/shapes = [  ]
 14/z_index = 0
+15/name = "portrait2.png 15"
+15/texture = ExtResource( 13 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 0, 0, 64, 64 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 0, 0 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape_one_way = false
+15/shape_one_way_margin = 0.0
+15/shapes = [  ]
+15/z_index = 0
+16/name = "portrait3.png 16"
+16/texture = ExtResource( 15 )
+16/tex_offset = Vector2( 0, 0 )
+16/modulate = Color( 1, 1, 1, 1 )
+16/region = Rect2( 0, 0, 64, 64 )
+16/tile_mode = 0
+16/occluder_offset = Vector2( 0, 0 )
+16/navigation_offset = Vector2( 0, 0 )
+16/shape_offset = Vector2( 0, 0 )
+16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+16/shape_one_way = false
+16/shape_one_way_margin = 0.0
+16/shapes = [  ]
+16/z_index = 0
+17/name = "portrait.png 17"
+17/texture = ExtResource( 14 )
+17/tex_offset = Vector2( 0, 0 )
+17/modulate = Color( 1, 1, 1, 1 )
+17/region = Rect2( 0, 0, 64, 64 )
+17/tile_mode = 0
+17/occluder_offset = Vector2( 0, 0 )
+17/navigation_offset = Vector2( 0, 0 )
+17/shape_offset = Vector2( 0, 0 )
+17/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+17/shape_one_way = false
+17/shape_one_way_margin = 0.0
+17/shapes = [  ]
+17/z_index = 0
 
 [node name="Furniture" type="TileMap"]
 z_index = -1

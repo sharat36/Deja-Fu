@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/environment/furniture/door_1_base.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/player.tscn" type="PackedScene" id=2]
@@ -23,7 +23,10 @@
 [ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=21]
 [ext_resource path="res://assets/ui/controls_ui.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/Levels/Level2.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/environment/furniture/portrait2.png" type="Texture" id=24]
 [ext_resource path="res://assets/ui/hints/dooropen.tres" type="Texture" id=25]
+[ext_resource path="res://assets/environment/furniture/portrait3.png" type="Texture" id=26]
+[ext_resource path="res://assets/environment/furniture/portrait.png" type="Texture" id=27]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -274,6 +277,48 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 7/shape_one_way_margin = 0.0
 7/shapes = [  ]
 7/z_index = 0
+8/name = "portrait2.png 8"
+8/texture = ExtResource( 24 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 0, 64, 64 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+9/name = "portrait3.png 9"
+9/texture = ExtResource( 26 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 0, 0, 64, 64 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0
+10/name = "portrait.png 10"
+10/texture = ExtResource( 27 )
+10/tex_offset = Vector2( 0, 0 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 0, 0, 64, 64 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 0, 0 )
+10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape_one_way = false
+10/shape_one_way_margin = 0.0
+10/shapes = [  ]
+10/z_index = 0
 
 [sub_resource type="TileSet" id=8]
 0/name = "move.tres 0"
@@ -404,7 +449,7 @@ z_index = -1
 tile_set = SubResource( 7 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -131031, 1610612742, 0, -131030, 1610612742, 0, -65495, 1610612742, 0, -65494, 1610612742, 0, 41, 1610612742, 0, 42, 1610612742, 0, 65577, 1610612742, 0, 65578, 1610612742, 0, 589847, 7, 0, 589848, 7, 0, 589849, 7, 0, 589850, 7, 0, 720908, 1, 0, 720909, 1, 0 )
+tile_data = PoolIntArray( -131031, 1610612742, 0, -131030, 1610612742, 0, -65495, 1610612742, 0, -65494, 1610612742, 0, 41, 1610612742, 0, 42, 1610612742, 0, 65577, 1610612742, 0, 65578, 1610612742, 0, 589847, 7, 0, 589848, 7, 0, 589849, 7, 0, 589850, 7, 0, 720908, 1, 0, 720909, 1, 0, 851999, 10, 0 )
 
 [node name="Hints" type="TileMap" parent="."]
 z_index = -1

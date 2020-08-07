@@ -13,11 +13,11 @@ var rewind_rate = 1.3
 var is_teleporting = false
 var teleport_time
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	store_pos()
 	dejaFu_bar.value = pos.size()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if dying:
 		return
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0 
@@ -139,12 +139,12 @@ func check_teleport():
 		$Clock.visible = false
 
 
-func show_clock(pos):
-	$Clock.position = pos[1] - Player.position
+func show_clock(poss):
+	$Clock.position = poss[1] - Player.position
 	$Clock.visible = true
-func teleport(pos):
-	Player.position = pos[1]
-	_velocity = pos[2]
+func teleport(poss):
+	Player.position = poss[1]
+	_velocity = poss[2]
 	$Clock.visible = false
 
 func _on_PlayerArea_body_entered(body):
