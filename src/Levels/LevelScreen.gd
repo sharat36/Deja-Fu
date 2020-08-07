@@ -8,8 +8,8 @@ export var level5: PackedScene
 export var level6: PackedScene
 export var level7: PackedScene
 export var level8: PackedScene
-export var TitleScreen: PackedScene
 
+onready var TitleScreen = load("res://src/Levels/TitleScreen.tscn")
 onready var anim_player = $"Fade In/AnimationPlayer"
 
 func _ready() -> void:
